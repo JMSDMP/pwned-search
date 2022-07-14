@@ -17,7 +17,7 @@ def lookup(pwd):
         if t == tail:
             return occurences
 
-def main(entry):
+def main(entry, lable):
     password = entry.get()
     print(password)
     occurences = lookup(password)
@@ -26,11 +26,15 @@ def main(entry):
     else:
         lable.configure(f"{password} was not found")
 
-if __name__ == "__main__":
+def gui():
     root = Tk()
     frm = ttk.Frame(root, padding=10)
     frm.grid()
     lable = ttk.Label(frm, text="Enter Password").grid(column=0, row=0)
-    entry = ttk.Entry(frm).grid(column=0, row=1)
-    ttk.Button(frm, text="Search", command=lambda: main(entry)).grid(column=1, row=1)
+    entry = Entry(frm).grid(column=0, row=1)
+    e = entry.get()
+    ttk.Button(frm, text="Search", command=lambda: main(e, lable)).grid(column=1, row=1)
     root.mainloop()
+
+if __name__ == "__main__":
+    gui()

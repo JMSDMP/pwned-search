@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import requests
 import hashlib
+import sys
 
 def lookup(pwd):
     sha1pwd = hashlib.sha1(pwd.encode("utf-8")).hexdigest().upper()
@@ -15,8 +16,7 @@ def lookup(pwd):
         if t == tail:
             return occurences
 
-def main():
-    password = input("Enter passsword: ")
+def main(password):
     occurences = lookup(password)
     if occurences:
         print(f"{password} was found {occurences} times.")
@@ -24,4 +24,4 @@ def main():
         print(f"{password} was not found")
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1])
